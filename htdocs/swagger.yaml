@@ -1,0 +1,80 @@
+swagger: '2.0'
+info:
+  description: This is the API documentation for a contact manager
+  version: 1.0.0
+  title: Contact Manager
+  contact:
+    email: do406580@ucf.edu
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: contacts.lampcontactmanager.xyz
+basePath: /LAMPAPI
+schemes:
+- http
+paths:
+  /Signup.php:
+    post:
+      tags:
+      - Users
+      summary: Signs up a new user
+      operationId: signUpUser
+      description: Registers a new user in the contact manager
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: signupItem
+        description: User signup information
+        schema:
+          type: object
+          required:
+          - firstname
+          - lastname
+          - login
+          - password
+          properties:
+            FirstName:
+              type: string
+            LastName:
+              type: string
+            UserName:
+              type: string
+            Password:
+              type: string
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+        500:
+          description: Server Error
+  /SearchContacts.php:
+    post:
+      tags:
+      - Users
+      summary: Searches for contacts
+      operationId: searchContacts
+      description: Searches for contacts in the contact manager
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: searchItem
+        description: Search criteria for contacts
+        schema:
+          type: object
+          required:
+          - name
+          properties:
+            name:
+              type: string
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
